@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlowDesk — チームのプロジェクト管理</title>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<!-- Auth view -->
+<section id="authView" class="auth-wrap">
+  <div class="auth-card">
+    <h1>FlowDesk</h1>
+    <p class="muted">チームのプロジェクト管理。プロジェクト、カンバン、コメント、活動ログをひとつに。</p>
+    <div class="tabs">
+      <button id="tabLogin" class="active">ログイン</button>
+      <button id="tabRegister">新規登録</button>
+    </div>
+    <form id="authForm">
+      <input type="text" id="authName" placeholder="名前（登録時のみ）" autocomplete="name" hidden>
+      <input type="email" id="authEmail" placeholder="メールアドレス" autocomplete="email" required>
+      <input type="password" id="authPassword" placeholder="パスワード（8文字以上）" autocomplete="current-password" required>
+      <button type="submit" class="primary" id="authSubmit">ログイン</button>
+      <p class="error" id="authError"></p>
+    </form>
+    <button id="demoLogin" class="ghost">デモアカウントで試す</button>
+    <p class="muted small">demo@flowdesk.dev / demo-password</p>
+  </div>
+</section>
+
+<!-- App view -->
+<div id="appView" hidden>
+  <header class="topbar">
+    <div class="brand">FlowDesk</div>
+    <nav>
+      <button data-nav="dashboard" class="nav-btn active">ダッシュボード</button>
+      <button data-nav="projects" class="nav-btn">プロジェクト</button>
+      <button data-nav="board" class="nav-btn">ボード</button>
+    </nav>
+    <div class="userbox">
+      <span id="currentUser"></span>
+      <button id="logoutBtn" class="ghost">ログアウト</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Dashboard -->
+    <section id="view-dashboard" class="view">
+      <h2>ダッシュボード</h2>
+      <div class="kpis">
+        <div class="kpi"><span class="kpi-label">プロジェクト</span><strong id="kpiProjects">–</strong></div>
+        <div class="kpi"><span class="kpi-label">未完了タスク</span><strong id="kpiOpen">–</strong></div>
+        <div class="kpi"><span class="kpi-label">期限超過</span><strong id="kpiOverdue" class="danger">–</strong></div>
+        <div class="kpi"><span class="kpi-label">自分に割当（未完了）</span><strong id="kpiMine">–</strong></div>
+      </div>
+      <div class="grid-2">
+        <div class="panel">
+          <h3>プロジェクト進捗</h3>
+          <div id="projectProgress"></div>
+        </div>
+        <div class="panel">
+          <h3>最近の活動</h3>
+          <ul id="activityList" class="activity"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="view-projects" class="view" hidden>
+      <h2>プロジェクト</h2>
+      <form id="projectForm" class="inline-form">
+        <input type="text" id="projectName" placeholder="新しいプロジェクト名" required>
+        <input type="text" id="projectDesc" placeholder="説明（任意）">
+        <button type="submit" class="primary">作成</button>
+      </form>
+      <div id="projectGrid" class="project-grid"></div>
+    </section>
+
+    <!-- Board -->
+    <section id="view-board" class="view" hidden>
+      <div class="board-head">
+        <h2 id="boardTitle">ボード</h2>
+        <select id="boardProjectSelect"></select>
+      </div>
+      <form id="taskForm" class="inline-form">
+        <input type="text" id="taskTitle" placeholder="新しいタスク" required>
+        <select id="taskPriority">
+          <option value="low">低</option>
+          <option value="medium" selected>中</option>
+          <option value="high">高</option>
+          <option value="urgent">緊急</option>
+        </select>
+        <input type="date" id="taskDue">
+        <button type="submit" class="primary">追加</button>
+      </form>
+      <div class="board" id="board"></div>
+    </section>
+  </main>
+</div>
+
+<!-- Task detail drawer -->
+<aside id="taskDrawer" hidden>
+  <div class="drawer-card">
+    <button id="drawerClose" class="ghost">閉じる</button>
+    <h3 id="drawerTitle"></h3>
+    <p class="muted" id="drawerMeta"></p>
+    <p id="drawerDesc"></p>
+    <label>ステータス
+      <select id="drawerStatus">
+        <option value="todo">未着手</option>
+        <option value="in_progress">進行中</option>
+        <option value="review">レビュー</option>
+        <option value="done">完了</option>
+      </select>
+    </label>
+    <h4>コメント</h4>
+    <ul id="commentList" class="activity"></ul>
+    <form id="commentForm" class="inline-form">
+      <input type="text" id="commentBody" placeholder="コメントを書く" required>
+      <button type="submit" class="primary">投稿</button>
+    </form>
+  </div>
+</aside>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

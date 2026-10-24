@@ -1,0 +1,57 @@
+:root{
+  --bg:#0e1116; --panel:#171c24; --panel2:#1f2632; --line:#2b3444;
+  --text:#e8edf5; --muted:#93a0b4; --accent:#4f7bff; --danger:#ff6b6b;
+  --todo:#8a94a6; --prog:#4f7bff; --review:#ffb84f; --done:#3ecf7a;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Hiragino Sans",sans-serif;background:var(--bg);color:var(--text)}
+button{cursor:pointer;border-radius:9px;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:9px 14px;font-weight:600}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button.ghost{background:transparent}
+input,select{padding:10px 12px;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--text);font-size:15px;min-width:0}
+.muted{color:var(--muted)} .small{font-size:13px} .error{color:var(--danger);min-height:1.2em}
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.auth-card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:32px;max-width:420px;width:100%}
+.auth-card h1{margin:0 0 6px;font-size:32px}
+.auth-card form{display:grid;gap:10px;margin:16px 0}
+.tabs{display:flex;gap:8px;margin-top:16px}
+.tabs button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar{display:flex;align-items:center;gap:20px;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5}
+.brand{font-weight:800;font-size:20px}
+.topbar nav{display:flex;gap:8px;flex:1}
+.nav-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.userbox{display:flex;gap:10px;align-items:center;color:var(--muted)}
+main{max-width:1180px;margin:0 auto;padding:24px 20px 64px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:4px}
+.kpi strong{font-size:28px}.kpi-label{color:var(--muted);font-size:13px}.danger{color:var(--danger)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.panel h3{margin-top:0}
+.progress-row{margin-bottom:12px}
+.progress-row .bar{height:8px;background:var(--panel2);border-radius:99px;overflow:hidden;margin-top:4px}
+.progress-row .fill{height:100%;background:var(--done)}
+.activity{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:14px}
+.activity li{border-bottom:1px solid var(--line);padding-bottom:8px}
+.activity .when{color:var(--muted);font-size:12px}
+.inline-form{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.inline-form input[type=text]{flex:1;min-width:180px}
+.project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.project-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:left;width:100%}
+.project-card h3{margin:0 0 6px}
+.board-head{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:start}
+.column{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;min-height:220px}
+.column h4{margin:2px 0 12px;display:flex;justify-content:space-between}
+.column.drag-over{outline:2px dashed var(--accent)}
+.task-card{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:11px 12px;margin-bottom:9px;cursor:grab}
+.task-card .title{font-weight:600;margin-bottom:5px}
+.task-card .meta{color:var(--muted);font-size:12px;display:flex;gap:8px;flex-wrap:wrap}
+.prio{font-weight:700}
+.prio-urgent{color:var(--danger)} .prio-high{color:var(--review)} .prio-medium{color:var(--prog)} .prio-low{color:var(--muted)}
+#taskDrawer{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;justify-content:flex-end;z-index:20}
+#taskDrawer[hidden]{display:none}
+.drawer-card{background:var(--panel);width:min(440px,94vw);height:100%;overflow:auto;padding:22px;border-left:1px solid var(--line)}
+.drawer-card label{display:grid;gap:6px;margin:14px 0;color:var(--muted);font-size:14px}
+@media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}.board{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.board{grid-template-columns:1fr}}

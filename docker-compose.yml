@@ -1,0 +1,14 @@
+services:
+  flowdesk:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      FLOWDESK_SECRET: "change-me-in-production"
+    volumes:
+      - flowdesk-data:/data
+
+volumes:
+  flowdesk-data:
